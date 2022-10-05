@@ -1,4 +1,4 @@
-from distutils.command.upload import upload
+
 from django.db import models
 from category .models import Brands, Categoryies
 from django.urls import reverse
