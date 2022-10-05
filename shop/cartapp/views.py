@@ -1,25 +1,17 @@
-from http import client
 from django.shortcuts import render
 from django.core.exceptions import ObjectDoesNotExist
-import json
-import random
-import re
 from django.contrib import messages
-from django.contrib.auth import authenticate,login,logout
-import datetime
 from django.shortcuts import redirect, render
 from django.shortcuts import get_object_or_404, render
 from product.models import Product
-from accounts.models import Account , Address
 from cartapp.models import Cart, CartItem, coupon, couponuseduser
-from django.http import HttpResponse, JsonResponse
-from django.contrib import auth
 # from order.models import OrderProduct, Orders, Payment
-from datetime import date 
 from userside.views import *
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.cache import cache_control
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
+
 def _cart_id(request):
     session_id = request.session.session_key
     if not session_id:
@@ -248,6 +240,7 @@ def add_cartsimple(request , id):
             cart_item.save()
     return redirect ("userhome")
 
+@login_required(login_url='register')
 def cartview(request,total = 0, quantity = 0, cart_items =None,tax = 0,grand_total =0,reduction = 0):
     rawtotal=0
     if request.user.is_authenticated:
@@ -278,8 +271,7 @@ def cartview(request,total = 0, quantity = 0, cart_items =None,tax = 0,grand_tot
             coupon_discount=reduction*total/100
         except ObjectDoesNotExist:
             pass #just ignore
-    else:
-         return redirect('signin')
+ 
     context = {
             'total':total,
             'quantity':quantity,
