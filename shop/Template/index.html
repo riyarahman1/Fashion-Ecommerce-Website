@@ -197,11 +197,11 @@
                                 <h3 class="title"><a href="singleproduct/{{x.id}}">{{x.product_name}}</a></h3>
                                 {% if not x.discount_price %}
                                 <div class=""><b><span><i style="font-size:15px"
-                                                class="fa fa-inr"></i>&nbsp;{{x.price}}</span></div></b>
+                                                class="fa fa"></i>&nbsp;₹{{x.price}}</span></div></b>
                                 {% else %}
                                 <div class="price"><span><del class="text-danger"><i style="font-size:15px"
-                                                class="fa fa-inr"></i>{{x.price}}</del></span>&nbsp;&nbsp;<i
-                                        style="font-size:15px" class="fa fa-inr"></i>{{x.discount_price}}</div>
+                                                class="fa fa"></i>₹{{x.price}}</del></span>&nbsp;&nbsp;<i
+                                        style="font-size:15px" class="fa fa"></i>₹{{x.discount_price}}</div>
                                 {% endif %}
                                 <a class="add-to-cart" href="{% url 'add_cart' x.id  %}">add to cart</a>
                             </div>
