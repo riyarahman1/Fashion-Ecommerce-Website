@@ -1,30 +1,16 @@
-from math import prod
-from multiprocessing import context
-from pickle import NONE
-import random
-from tkinter import N
-from turtle import home
-from unicodedata import category
+
 from accounts.models import *
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login
 from django.shortcuts import redirect, render
 from product.models import Categoryies, Product,Productoffer,Categoryoffer
 from shop import settings
-from django.contrib import auth
 from twilio.rest import Client
 from cartapp.models import CartItem, coupon
 from order.models import Order, OrderProduct
-from django.views.decorators.cache import cache_control
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
-from .models import Profile
-from django.core.paginator import Paginator
 import random
-from .helper import MessageHandler
-from django.contrib.auth.decorators import login_required
 from product.models import *
 # Create your views here.
 
