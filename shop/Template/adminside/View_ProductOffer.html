@@ -1,0 +1,88 @@
+{% extends 'adminside/adminbase.html' %}
+
+{% block content %}
+<div class="content-header sty-one" style="margin-top: 64px;">
+    <h1 class="text-black" style="
+    font-weight: 500;">Product Offer</h1>
+    <ol class="breadcrumb">
+      <li><a href="adminhome">Home</a></li>
+      <li class="sub-bread"><i class="fa fa-angle-right"></i>User Management</li>
+      <li><i class="fa fa-angle-right"></i>Product Offer</li>
+    </ol>
+  </div>
+<div class="table-responsive">
+  <table class="table table-hover" style="
+  margin-left:78px;margin-top: 17px;max-width:87%;background:#D3D3D3;">
+        <a href="{% url 'NewProductOffer'%}">
+            <div class="btn"  style="margin-top: 31px;
+            margin-left: 93px; background-color: #252932; color:white;">
+                Add Product Offer
+            </div>
+        </a>
+        <thead class="thead-dark" style="background-color: #252932;">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product</th>
+                <th scope="col">Discount</th>
+                <th scope="col">Status</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% if ProductOffer %}
+            <div class="row">
+                {% for value in ProductOffer %}
+
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{value.product.product_name}}</td>
+                    <td>Discount:{{value.discount}}%</td>
+                    <td><a href="{% url 'EditProductOffer' value.id %}"><button type="button"
+                            class="btn" style="background-color: #252932; color:white ;">Edit</button></a></td>
+                    <td><a href="{% url 'DeleteProductOffer' value.id %}"><button type="button"
+                            class="btn light btn-danger btn-xs">Delete</button></a></td>
+                    {% if value.is_active %}
+                    <td><a href="{% url 'BlockProductOffer' value.id %}"><button type="button"
+                            class="btn" style="background-color: #252932; color:white ;">Block</button></a></td>
+                    {% else %}
+                    <td><a href="{% url 'UnBlockProductOffer' value.id %}"><button type="button"
+                            class="btn" style="background-color: #252932; color:white ;">UnBlock</button></a></td>
+
+                    {% endif %}
+                </tr>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+        </tbody>
+    </table>
+    <!-- ---------------------------------- Pagination ---------------------------------- -->
+    <!-- --------------------------------------------------------------------- -->
+    <nav aria-label="Page navigation example">
+  
+        <ul class="pagination" style="margin-right: 619px;/* text-align: center; */">
+            {% if ProductOffer.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="productoffers?page={{ProductOffer.previous_page_number}}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          {% endif %}
+          {% for n in totalPagelist %}
+          <li class="page-item"><a class="page-link" href="productoffers?page={{n}}">{{n}}</a></li>
+          {% endfor %}
+          {% if ProductOffer.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="productoffers?page={{ProductOffer.next_page_number}}" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+          {% endif %}
+      
+        </ul>
+      </nav>
+</div>
+
+{% endblock %}

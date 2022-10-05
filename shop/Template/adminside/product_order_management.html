@@ -1,0 +1,73 @@
+{% extends 'adminside/adminbase.html' %}
+
+{% block content %}
+<div class="content-header sty-one">
+  <h1 class="text-black">Order</h1>
+  <ol class="breadcrumb">
+    <li><a href="adminhome">Home</a></li>
+    <a href="{% url 'order_management'%}">
+      <li class="sub-bread"><i class="fa fa-angle-right"></i>Order Management
+    </a></li>
+    <!-- <li><i class="fa fa-angle-right"></i>View Order</li> -->
+  </ol>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-hover" style="
+        margin-left:78px;margin-top: 17px;max-width:87%;background:#D3D3D3;">
+      <thead class="thead-dark" style="background-color:#252932;">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Product</th>
+        <th scope="col">Quantity</th>
+        <!-- <th scope="col">Price</th> -->
+        <th scope="col">Status</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for x in orderproduct %}
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{x.product}}</td>
+        <td>{{x.quantity}}</td>
+        <!-- <td>{{x.price}}</td> -->
+        <td>{{x.status}}</td>
+        <!-- ?????????????????????/? -->
+        {% if x.status == "Delivered" %}
+        {% else %}
+        <td>
+          <form action="{% url 'product_change_status' x.id %}" method="POST">
+            {% csrf_token %}
+
+            <select class="nice-select" name="status" value="status">
+
+
+              <option>Confirmed</option>
+              <option>Shipped</option>
+              <option>Out_for_delivery</option>
+              <option>Delivered</option>
+              <option>Cancelled</option>
+              <option>Returned</option>
+              <!-- <option>return_accepted</option> -->
+
+            </select>
+</div>
+
+</td>
+<td>
+  <button class="btn" style="background-color:#252932; color:white;">
+     submit</button>
+</td>
+</form>
+{% endif %}
+</tr>
+{% endfor %}
+
+</tbody>
+</table>
+</div>
+
+
+{% endblock %}

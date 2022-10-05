@@ -1,0 +1,322 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Male_Fashion Template">
+    <meta name="keywords" content="Male_Fashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fashion</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'products/css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'products/css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'products/css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'products/css/magnific-popup.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'products/css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'products/css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'products/css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'products/css/style.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'products/css/style.css' %}" type="text/css">
+    <!-- <link rel="stylesheet" href="{% static 'products/css/zoom.css' %}" type="text/css"> -->
+    <link rel="stylesheet" href="{% static 'products/css/products.css' %}" type="text/css">
+    <script src="https://unpkg.com/htmx.org@1.8.0"></script>
+
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__option">
+            <div class="offcanvas__links">
+                <a href="#">Sign in</a>
+                <a href="#">FAQs</a>
+            </div>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__text">
+            <p>Free shipping, 30-day return or refund guarantee.</p>
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-7">
+                    </div>
+                    <div class="col-lg-6 col-md-5">
+                        <div class="header__top__right">
+                            <div class="header__top__links">
+                                {% if user.is_active %}
+                                    <a href="{% url 'userprofile' %}">{{user.username}}</a>
+                                <a href="{% url 'logout' %}">Log Out</a>
+
+                                {% else %}
+                                <a href="{% url 'register' %}">Sign in</a>
+                                {% endif %}
+                            </div>
+                            <div class="header__top__hover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__logo">
+                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <nav class="header__menu mobile-menu">
+                        <ul>
+                            <li class="active"><a href="{% url 'index' %}">Home</a></li>
+                            <li><a href="{% url 'men' %}">Shop</a></li>
+                            <li><a href="#">Pages</a>
+                                <ul class="dropdown">
+                                    <!-- <li><a href="./about.html">About Us</a></li> -->
+                                    <!-- <li><a href="./shop-details.html">Shop Details</a></li> -->
+                                    <li><a href="{% url 'cartview' %}">Shopping Cart</a></li>
+                                    <li><a href="{% url 'checkout' %}">Check Out</a></li>
+                                    <!-- <li><a href="./blog-details.html">Blog Details</a></li> -->
+                                </ul>
+                            </li>
+                            <!-- <li><a href="./blog.html">Blog</a></li> -->
+                            <!-- <li><a href="./contact.html">Contacts</a></li> -->
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <!-- <div class="header__nav__option">
+                        <a href="#" class="search-switch">
+                                
+                        <a class="btn btn-link rounded-square border" href="{% url 'cartview' %}"><img src="{% static 'products/img/icon/cart.png'%}" alt=""><span class="badge badeg-pill badge-danger notify"></span></a>
+                        <div class="price">{{grand_total}}</div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="canvas__open"><i class="fa fa-bars"></i></div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+    <!-- Hero Section Begin -->
+    <section class="hero">
+        <div class="hero__slider owl-carousel">
+            <div class="hero__items set-bg" data-setbg="{%static 'products/img/hero/cover.jpg'%}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-5 col-lg-7 col-md-8">
+                            <div class="hero__text">
+                                <h6>Latest Collection</h6>
+                                <h2>Collections 2022</h2>
+    
+                                <a href="{% url 'men' %}" class="primary-btn">Shop now <span class="arrow_right"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- Banner Section Begin -->
+    <section class="banner spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="banner__item">
+                        <div class="banner__item__pic">
+                            <img src="{% static 'images/men.jpg' %}" alt="">
+                            <div class="Text">
+                                <h3>Mens Collections</h3>
+                                <a href="{% url 'men' %}" class="primary-btn" style="font-size: 9px;">Shop now <span class="arrow_right"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="banner__item">
+                        <div class="banner__item__pic">
+                            <img src="{% static 'images/womens.jpg' %}" alt="">
+                            <div class="Text">
+                                <h3>Womens Collections</h3>
+                                <a href="{% url 'womenproduct' %}" class="primary-btn" style="font-size: 9px;">Shop now <span class="arrow_right"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="banner__item">
+                        <div class="banner__item__pic">
+                            <img src="{% static 'images/kid.jpg'%}" alt="">
+                            <div class="Text">
+                                <h3>Kids Collections</h3>
+                                <a href="{% url 'kidsproduct' %}" class="primary-btn" style="font-size: 9px;">Shop now <span class="arrow_right"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="container">
+          <img class="img-fluid" src="{% static 'images/collection-of-the-most-beautiful-fashion-banners-picture-2-MiWPZ0F7l.jpg'%}" alt="">
+        </div>
+    <br>
+    <div class="text1" style="margin-top: 25px;text-align: center;margin-bottom: 25px;">
+        <h3>Latest Products</h3>
+    </div>
+    <div class="row1" style="background-color:#c3c1c1;">
+        <div class="col-lg-9" style="margin-left: 192px; padding:45px;">
+            <div class="row">
+                    {% for x in product %}
+                    {% if forloop.counter <= 6 %}
+                    <div class="col-lg-4 col-md-4 col-sm-4" style="margin-bottom: 50px;">
+                        <div class="product-grid">
+                            <div class="product-image">
+                                <a href="{% url 'singleproduct' x.id  %}" class="image">
+                                    <img class="pic-1" src="{{x.image.url}}">
+                                </a>
+                            </div>
+                            <div class="product-content">
+                                <h3 class="title"><a href="singleproduct/{{x.id}}">{{x.product_name}}</a></h3>
+                                {% if not x.discount_price %}
+                                <div class=""><b><span><i style="font-size:15px"
+                                                class="fa fa-inr"></i>&nbsp;{{x.price}}</span></div></b>
+                                {% else %}
+                                <div class="price"><span><del class="text-danger"><i style="font-size:15px"
+                                                class="fa fa-inr"></i>{{x.price}}</del></span>&nbsp;&nbsp;<i
+                                        style="font-size:15px" class="fa fa-inr"></i>{{x.discount_price}}</div>
+                                {% endif %}
+                                <a class="add-to-cart" href="{% url 'add_cart' x.id  %}">add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                            {% endif %}
+                            {% endfor%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner Section End -->
+
+    <!-- Product Section Begin -->
+    <!-- Product Section End -->
+
+    <!-- Categories Section Begin -->
+    <!-- Categories Section End -->
+
+    <!-- Instagram Section Begin -->
+    <!-- Instagram Section End -->
+
+    <!-- Latest Blog Section Begin -->
+    <!-- Latest Blog Section End -->
+ <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="#"><img src="img/footer-logo.png" alt=""></a>
+                        </div>
+                        <p>The customer is at the heart of our unique business model, which includes design.</p>
+                        <a href="#"><img src="img/payment.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Shopping</h6>
+                        <ul>
+                            <li><a href="#">Clothing Store</a></li>
+                            <li><a href="#">Trending Dress</a></li>
+                            <li><a href="#">Sale</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Shopping</h6>
+                        <ul>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Payment Methods</a></li>
+                            <li><a href="#">Delivary</a></li>
+                            <li><a href="#">Return & Exchanges</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>NewLetter</h6>
+                        <div class="footer__newslatter">
+                            <p>Be the first to know about new arrivals, look books, sales & promos!</p>
+                            <form action="#">
+                                <input type="text" placeholder="Your email">
+                                <button type="submit"><span class="icon_mail_alt"></span></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="footer__copyright__text">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p>Copyright ©
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>2020
+                            All rights reserved | This template is made with <i class="fa fa-heart-o"
+                                aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        </p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+
+    <!-- Js Plugins -->
+    <script src="{% static 'products/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'products/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'products/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'products/js/jquery.nicescroll.min.js' %}"></script>
+    <script src="{% static 'products/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'products/js/jquery.countdown.min.js' %}"></script>
+    <script src="{% static 'products/js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'products/js/mixitup.min.js' %}"></script>
+    <script src="{% static 'products/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'products/js/main.js' %}"></script>
+    <!-- <script src="{% static 'products/js/zoom.js' %}"></script> -->
+
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+{% extends 'userbase.html' %}
+
+{% block content %}
+<section class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>Shopping Cart</h4>
+                    <div class="breadcrumb__links">
+                        <a href="{% url 'index' %}">Home</a>
+                        <a href="{% url 'men' %}">Shop</a>
+                        <span>Shopping Cart</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- coupon-area-start -->
+<!-- <section class="coupon-area pt-120 pb-30">
+        <div class="container">
+            
+    </div>
+    </section> -->
+<!-- coupon-area-end -->
+
+<!-- checkout-area-start -->
+<section class="checkout-area pb-85">
+    <div class="container">
+        <form action="{% url 'confirmpayment' %}" method="POST">
+            {% csrf_token %}
+            <div class="row" style="height: 735px;">
+                <div class="col-lg-7" style="margin-top: 76px;">
+                    <div class="checkbox-form">
+                        <div class="different-address">
+                            <div class="card-header col-md-8">
+                                <h3>Billing Details</h3>
+                            </div>
+                            {% for x in address %}
+                            <div class="card-body col-md-8" style="background-color:rgb(241 241 241);">
+                                <div class="radio" style="margin-top: 5px;">
+                                    <label>
+                                        <input type="radio" name="address_id" id="optionsRadios1" value="{{x.id}}"
+                                        checked>
+                                       <i><h6>{{x.firstname}}&nbsp;{{x.lastname}}</h6>
+                                        <!-- <h6>{{x.lastname}} <br></h6> -->
+                                        <h6>{{x.phone_number}},<br></h6>
+                                        <h6>{{x.Email_Address}},<br></h6>
+                                        <h6>{{x.Addressfield}}{{x.Town}},</h6>
+                                        <!-- <h6>{{x.Town}},<br></h6> -->
+                                        <h6>{{x.state}},<br></h6>
+                                        <h6>{{x.pincode}} <br><br></h6></i> 
+                                    </label>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <div class="ship-different-title">
+                                <h3>
+
+                                    <div class="order-button-payment mt-20">
+                                        <a href="{% url 'addaddress' %}" style="color:white;"><button type="submit"
+                                                class="site-btn">Add
+                                                address</a>
+                                    </div>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4" style="margin-top: 110px;">
+                    <!-- <div class="cart__discount" style="width:360px ;">
+                        <h6>Discount codes</h6>
+                        <form action="{% url 'apply_coupon' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="text" placeholder="Coupon code" name="coupon_code">
+                            <button type="submit" style="background-color:black;color: white;">Apply</button>
+                        </form>
+                    </div> -->
+                    <div class="cart__total">
+                        <h6>Cart total</h6>
+                        <ul>
+                            <li>Subtotal <span>{{total}}</span></li>
+                            <li>Tax<span>{{tax}}</span></li>
+                            {% if coupon_discount > 0 %}
+                            <li>coupon discount<span> {{coupon_discount}}</span></li>
+                            {% endif %}
+                            <li>Total <span>{{grand_total}}</span></li>
+                        </ul>
+                        <!-- <a href="{% url 'confirmpayment' %}" class="primary-btn">PLACE ORDER</a> -->
+                        <button type="submit" class="primary-btn">PLACE ORDER</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="cart__discount" style="width:360px ;">
+            <h6>Discount codes</h6>
+            <form action="{% url 'apply_coupon' %}" method="POST">
+                {% csrf_token %}
+                <input type="text" placeholder="Coupon code" name="coupon_code">
+                <button type="submit" style="background-color:black;color: white;">Apply</button>
+            </form>
+            {% for msg in messages %}
+            {{msg}}
+            {% endfor %}<br>
+        </div>
+    </div>
+</section>
+<!-- checkout-area-end -->
+
+
+<!-- cta-area-end -->
+
+
+{% endblock %}

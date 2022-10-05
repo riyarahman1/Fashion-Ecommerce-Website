@@ -1,0 +1,120 @@
+{% extends 'userbase.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>Shop</h4>
+                    <div class="breadcrumb__links">
+                        <a href="./index.html">Home</a>
+                        <span>Shop</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<!-- Shop Section Begin -->
+<section class="shop spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="shop__sidebar">
+                    <div class="shop__sidebar__search">
+                        <form action="{% url 'mensearch' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="text" placeholder="Search..." name="search" value="search">
+                            <button type="submit"><span class="icon_search"></span></button>
+                        </form>
+                    </div>
+                    <div class="shop__sidebar__accordion">
+                        <div class="accordion" id="accordionExample">
+                            <div class="card" style="height: 149px;">
+                                <div class="card-heading">
+                                    <a data-toggle="collapse" data-target="#collapseOne">Categories</a>
+                                </div>
+                                <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="shop__sidebar__categories">
+                                            <ul class="nice-scroll">
+                                                <li><a href="{% url 'men' %}">Men</a></li>
+                                                <li><a href="{% url 'womenproduct' %}">Women</a></li>
+                                                <li><a href="{% url 'kidsproduct' %}">Kids</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-heading">
+                                    <a data-toggle="collapse" data-target="#collapseTwo">Branding</a>
+                                </div>
+                                <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="shop__sidebar__brand">
+                                            <ul class="nice-scroll">
+                                                <h5 style="color:gray ;"><b>Men</b></h5>
+                                                <li><a href="{% url 'levis' %}">Levis</a></li>
+                                                <li><a href="{% url 'allensolly'%}">Allen Solly</a></li>
+                                                <li><a href="{% url 'peter' %}">Peter England</a></li><br>
+                                                <h5 style="color:grey ;"><b>Women</b></h5>
+                                                <li><a href="{% url 'Miss_Chase' %}">Miss Chase</a></li>
+                                                <li><a href="{% url 'harpa'%}">Harpa</a></li><br>
+                                                <h5 style="color:grey ;"><b>Kids</b></h5>
+                                                <h6>Boys</h6>
+                                                <li><a href="{% url 'puma' %}">Puma</a></li>
+                                                <li><a href="{% url 'max'%}">Max</a></li>
+                                                <h6>Girls</h6>
+                                                <li><a href="{% url 'disney' %}">Disney</a></li>
+                                                <li><a href="{% url 'hopscotch'%}">Hopscotch</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="row">
+                    {% for x in menproduct %}
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="product-grid">
+                            <div class="product-image">
+                                <a href="{% url 'singleproduct' x.id  %}" class="image">
+                                    <img class="pic-1" src="{{x.image.url}}">
+                                </a>
+                            </div>
+                            <div class="product-content">
+                                <h3 class="title"><a href="singleproduct/{{x.id}}">{{x.product_name}}</a></h3>
+                                {% if not x.discount_price %}
+                                <div class=""><b><span><i style="font-size:15px"
+                                                class="fa fa-inr"></i>&nbsp;{{x.price}}</span></div></b>
+                                {% else %}
+                                <div class="price"><span><del class="text-danger"><i style="font-size:15px"
+                                                class="fa fa-inr"></i>{{x.price}}</del></span>&nbsp;&nbsp;<i
+                                        style="font-size:15px" class="fa fa-inr"></i>{{x.discount_price}}</div>
+                                {% endif %}
+                                <a class="add-to-cart" href="{% url 'add_cart' x.id  %}">add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<!-- Shop Section End -->
+
+
+{% endblock %}

@@ -1,0 +1,220 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Admin panel</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1"/>
+
+  <!-- v4.0.0-alpha.6 -->
+  <link rel="stylesheet" href="{% static 'dist/bootstrap/css/bootstrap.min.css'%}">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'dist/css/style.css'%}">
+  <link rel="stylesheet" href="{% static 'dist/css/font-awesome/css/font-awesome.min.css'%}">
+  <link rel="stylesheet" href="{% static 'dist/css/et-line-font/et-line-font.css'%}">
+  <link rel="stylesheet" href="{% static 'dist/css/themify-icons/themify-icons.css'%}">
+
+  <!-- Chartist CSS -->
+  <link rel="stylesheet" href="{% static 'dist/plugins/chartist-js/chartist.min.css'%}">
+  <link rel="stylesheet" href="{% static 'dist/plugins/chartist-js/chartist-init.css'%}">
+  <link rel="stylesheet" href="{% static 'dist/plugins/chartist-js/chartist-plugin-tooltip.css'%}">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper boxed-wrapper">
+    <header class="main-header">
+      <!-- Logo -->
+      <a href="index.html" class="logo blue-bg" style="background-color:#252932">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><img src="{% static 'dist/img/logofgh-n.png'%}" alt=""></span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><img src="{% static 'dist/img/logobb.png'%}" alt=""></span>
+      </a>
+      <!-- Header Navbar: style can be found in header.less -->
+      <nav class="navbar blue-bg navbar-static-top" style="background-color: #252932">
+        <!-- Sidebar toggle button-->
+        <ul class="nav navbar-nav pull-left">
+          <li><a class="sidebar-toggle" data-toggle="push-menu" href=""></a> </li>
+        </ul>
+        <div class="pull-left search-box">
+          <form action="#" method="get" class="search-form">
+            <!-- <div class="input-group">
+            <input name="search" class="form-control" placeholder="Search..." type="text">
+            <span class="input-group-btn">
+            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i> </button>
+            </span></div> -->
+          </form>
+          <!-- search form -->
+        </div>
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <!-- Messages: style can be found in dropdown.less-->
+            <!-- <li class="dropdown messages-menu"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-envelope-o"></i> -->
+            <!-- <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div> -->
+            </a>
+            <!-- <ul class="dropdown-menu">
+              <li class="header">You have 4 new messages</li>
+              <li> -->
+            <!-- <ul class="menu">
+                  <li><a href="#">
+                    <div class="pull-left"><img src="{% static 'dist/img/img1.jpg' %}" class="img-circle" alt="User Image"> <span class="profile-status online pull-right"></span></div>
+                    <h4>Alex C. Patton</h4>
+                    <p>I've finished it! See you so...</p>
+                    <p><span class="time">9:30 AM</span></p>
+                    </a></li>
+
+                </ul> -->
+            </li>
+            <!-- <li class="footer"><a href="#">View All Messages</a></li> -->
+            <!-- Notifications: style can be found in dropdown.less -->
+            <!-- <li class="dropdown messages-menu"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-bell-o"></i> -->
+            <!-- <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div> -->
+            </a>
+            </li>
+            <!-- User Account: style can be found in dropdown.less -->
+            <li class="dropdown user user-menu p-ph-res"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <img src="{% static 'dist/img/profile.jpg'%}" class="user-image" alt="User Image"> <span
+                  class="hidden-xs"></span> </a>
+              <ul class="dropdown-menu">
+                <li><a href="{% url 'adminlogout' %}"><i class="fa fa-power-off"></i> Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+      <!-- sidebar: style can be found in sidebar.less -->
+      <div class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+          <div class="image text-center"><img src="{% static 'dist/img/profile.jpg'%}" class="img-circle"
+              alt="User Image"> </div>
+          <div class="info">
+            <p style="color:black;">{{user.username}}</p>
+            <p style="color:black;">{{user.email}}</p>
+            <a href="{% url 'adminlogout' %}"><i class="fa fa-power-off"></i></a>
+          </div>
+        </div>
+
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" data-widget="tree">
+          <li class="header">PERSONAL</li>
+          <li><a href="{% url 'adminhome' %}"> <i class="fa fa-dashboard"></i> <span>Dashboard</span> <span
+                class="pull-right-container"></i> </span> </a>
+          </li>
+          <li class="treeview"> <a href=""> <i class="fa fa-group"></i> <span>Users</span> <span
+                class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span> </a>
+            <ul class="treeview-menu">
+              <li><a href="{% url 'user_list'%}">View User</a></li>
+            </ul>
+          </li>
+          <li class="treeview"> <a href=""> <i class="fa fa-th"></i> <span>Products</span> <span
+                class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span> </a>
+            <ul class="treeview-menu">
+              <li><a href="{% url 'product' %}">View Products</a></li>
+              <li><a href="{% url 'adminmen' %}">Men</a></li>
+              <li><a href="{% url 'adminwomen' %}">Women</a></li>
+              <li><a href="{% url 'adminkids' %}">Kids & Baby</a></li>
+            </ul>
+          </li>
+          <li class="treeview"><a href=" "><i class="fa fa-th"></i> <span>Category</span> <span
+                class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+            <ul class="treeview-menu">
+              <li><a href="{% url 'categoryList'%}">Category</a></li>
+              <li><a href="{% url 'brandList' %}">Brand</a></li>
+            </ul>
+          </li>
+          <li class="treeview"> <a href=""> <i class="fa fa-th"></i> <span>Orders</span> <span
+                class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span> </a>
+            <ul class="treeview-menu">
+              <li><a href="{% url 'order_management'%}">View Order</a></li>
+            </ul>
+          </li>
+          <li class="treeview"> <a href=""> <i class="fa fa-th"></i> <span>Coupons</span> <span
+                class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span> </a>
+            <ul class="treeview-menu">
+              <li><a href="{% url 'view_coupon'%}">View Coupon</a></li>
+              <li><a href="{% url 'add_coupon'%}">Add Coupon</a></li>
+            </ul>
+          </li>
+          <li class="treeview"> <a href=""> <i class="fa fa-th"></i> <span>Offer Management</span> <span
+                class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span> </a>
+            <ul class="treeview-menu">
+              <li><a href="{% url 'ViewCategoryOffer'%}">Category offer</a></li>
+              <li><a href="{% url 'ViewProductOffer'%}">Product offer </a></li>
+            </ul>
+          </li>
+          <li class="treeview"> <a href=""> <i class="fa fa-th"></i> <span>Sales Report</span> <span
+                class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span> </a>
+            <ul class="treeview-menu">
+              <li><a href="{% url 'salesreport' %}">sales</a></li>
+            </ul>
+          </li>
+          <!-- <li class="treeview"> <a href=""> <i class="fa fa-th"></i> <span>Banners</span> <span
+            class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span> </a>
+          <ul class="treeview-menu">
+          <li><a href="">sales</a></li>
+        </ul>
+      </li> -->
+        </ul>
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+
+
+    <div class="content-wrapper" style="background-color:white;">
+
+      {% block content %}
+
+      {% endblock %}
+
+
+    </div>
+
+    <!-- /.content-wrapper -->
+    <!-- <footer class="main-footer">
+    
+   </footer> -->
+
+    <!-- ./wrapper -->
+
+    <!-- jQuery 3 -->
+    <script src="{% static 'dist/js/jquery.min.js'%}"></script>
+
+    <!-- v4.0.0-alpha.6 -->
+    <script src="{% static 'dist/bootstrap/js/bootstrap.min.js'%}"></script>
+
+    <!-- template -->
+    <script src="{% static 'dist/js/niche.js'%}"></script>
+
+    <!-- Chartjs JavaScript -->
+    <script src="{% static 'dist/plugins/chartjs/chart.min.js'%}"></script>
+    <script src="{% static 'dist/plugins/chartjs/chart-int.js'%}"></script>
+
+    <!-- Chartist JavaScript -->
+    <script src="{% static 'dist/plugins/chartist-js/chartist.min.js'%}"></script>
+    <script src="{% static 'dist/plugins/chartist-js/chartist-plugin-tooltip.js'%}"></script>
+    <script src="{% static 'dist/plugins/functions/chartist-init.js'%}"></script>
+
+</body>
+
+</html>

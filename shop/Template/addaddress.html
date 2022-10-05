@@ -1,0 +1,93 @@
+{% extends 'userbase.html' %}
+
+{% block content %}
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>Check Out</h4>
+                        <div class="breadcrumb__links">
+                            <a href="./index.html">Home</a>
+                            <a href="./shop.html">Shop</a>
+                            <span>Address</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Checkout Section Begin -->
+    <section class="checkout spad">
+        <div class="container">
+            <div class="checkout__form">
+                <form action="/addaddress" method="POST">
+                    {% csrf_token %}
+                    {% for msg in messages %}
+                        <p class="text-danger">{{msg}}</p>
+                        {% endfor %}
+                    <div class="row">
+                        
+                        <div class="col-lg-8 col-md-6">
+                            <h6 class="checkout__title">Billing Details</h6>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>First Name:<span>*</span></p>
+                                        <input type="text" name="firstname" placeholder="First Name">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Last Name:<span>*</span></p>
+                                        <input type="text" name="lastname" placeholder="Last Name">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkout__input">
+                                <p>Email Id:<span>*</span></p>
+                                <input type="email" name="Email_Address" placeholder="Email Address">
+                            </div>
+                            <div class="checkout__input">
+                                <p>Phone No:<span>*</span></p>
+                                <input type="text" name="phone_number" placeholder="Phone number">
+                            </div>
+                            <div class="checkout__input">
+                                <p>Address<span>*</span></p>
+                                <input type="text" name="Address" placeholder="Address line ">
+                            </div>
+                            <div class="checkout__input">
+                                <p>Town<span>*</span></p>
+                                <input type="text" name="Town" placeholder="Town/City">
+                            </div>
+                            <div class="checkout__input">
+                                <p>State<span>*</span></p>
+                                <input type="text" name="state" placeholder="State">
+                            </div>
+                            <div class="checkout__input">
+                                <p>Zip Code<span>*</span></p>
+                                <input type="text" name="pincode" placeholder="Zip Code">
+                            </div>
+                            <div class="checkout__input">
+                             <button type ="submit" class="site-btn">
+                                   submit
+                                </button>
+                            </div>
+                        </div>
+                        </div>
+
+                </form>
+                
+            </div>
+            </form>
+        </div>
+        </div>
+    </section>
+    <!-- Checkout Section End -->
+
+    <!-- Footer Section Begin -->
+   {% endblock %}

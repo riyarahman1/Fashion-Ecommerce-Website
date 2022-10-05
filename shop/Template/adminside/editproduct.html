@@ -1,0 +1,84 @@
+{% extends 'adminside/adminbase.html' %}
+
+{% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header sty-one">
+  <h1 class="text-black"></h1>
+  <ol class="breadcrumb">
+    <li><a href="adminhome">Home</a></li>
+    <li class="sub-bread"><i class="fa fa-angle-right"></i> Forms</li>
+    <li><i class="fa fa-angle-right"></i>New Product</li>
+  </ol>
+</div>
+
+<!-- Main content -->
+<div class="content">
+  <div class="d-flex justify-content-center">
+    <div class="col-lg-6">
+      <div class="card card-outline ">
+        <div class="card-header" style="background-color: black;">
+          <h5 class="text-white m-b-0">Edit Products</h5>
+        </div>
+        <div class="card-body" style="background: bisque;">
+          <form action="{% url 'editproduct' this_product.id %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="">Name</label>
+              <input type="text" class="form-control" id="" value="{{this_product.product_name}}" name="name">
+            </div>
+            <div class="form-group">
+              <label for="">Description</label>
+              <input type="text" class="form-control" id="" value="{{this_product.description}}" name="description">
+            </div>
+            <div class="form-group">
+              <label for="">Price</label>
+              <input type="number" class="form-control" id="" value="{{this_product.price}}" name="price">
+            </div>
+            <div class="form-group">
+              <label for="">Stock</label>
+              <input type="number" class="form-control" id="" value="{{this_product.stock}}" name="stock">
+            </div>
+            <div class="form-group">
+              <label for="">Category</label>
+              <!-- <input type="text" class="form-control" id="" placeholder="Category" name="category" > -->
+              <div class="form-group">
+                <select class="form-control" name="category">
+                  {% for category in values %}
+                  <option value="{{category.id}}">{{category.category_name}}</option>
+
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="">Brand</label>
+              <div class="form-group">
+                <select class="form-control" name="brands">
+                  {% for brand in brand %}
+                  <option value="{{brand.brandname}}">{{brand.brandname}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="form-label">
+              <label for="customFile">Image</label>
+              <input type="file" class="form-control" id="customFile" name="image" accept="image/*"
+                title="Only images are allowed"><br>
+              <input type="file" class="form-control" id="customFile" name="image1" accept="image/*"
+                title="Only images are allowed"> <br>
+              <input type="file" class="form-control" id="customFile" name="image2" accept="image/*"
+                title="Only images are allowed"><br>
+              <input type="file" class="form-control" id="customFile" name="image3" accept="image/*"
+                title="Only images are allowed"><br>
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<script defer src="https://cdn.crop.guide/loader/l.js?c=TSBXNY"></script>
+{% endblock %}

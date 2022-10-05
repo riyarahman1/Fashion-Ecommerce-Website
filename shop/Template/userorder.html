@@ -1,0 +1,87 @@
+{% extends 'userbase.html' %}
+{% block content %}
+{% if orders is None %}
+<h4> You Have No Orders Currently </h4>
+{% else %}
+<section class="shopping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="shopping__cart__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for x in orders %}
+                            <tr>
+                                <td class="product__cart__item">
+                                    <div class="product__cart__item__pic" style="width: 200px;">
+                                        <img src="{{x.product.image.url}}" alt="Product">
+                                    </div>
+                                    <div class="product__cart__item__text" style="margin-top: 97px;">
+                                        <h6>{{x.product.product_name}}</h6>
+                                    </div>
+                                </td>
+                                <td class="cart__price"> {{x.quantity}}</td>
+                                <td class="cart__price">{{x.price}}</td>
+                                <td class="'cart_price">{{x.status}}</td>
+                                {% if x.status == "cancelled" %}
+                                       <td>{{x.status}}</td>
+                                {% endif %}
+
+                                {% if x.status == "returned" %}
+                                       <td>{{x.status}}</td> 
+                                {% endif %}
+                                {% if x.status == "Confirmed"  %}
+                            
+                                <td><a href="{% url 'product_order_cancel' x.id %}"  class="btn">Tap to Cancel</a></td> 
+                                {% endif %}
+                                {% if x.status == "shipped" %}
+                                       <td><a href="{% url 'product_order_cancel' x.id %}"  class="btn">Tap to Cancel</a></td> 
+                                {% endif %}
+                                       {% if x.status == "out for delivery" %}
+                                       <td><a href="{% url 'product_order_cancel' x.id %}"  class="btn">Tap to Cancel</a></td> 
+                                       {% endif %}
+                                       {% if x.status == "Delivered" %}
+                                       <td><a href="{% url 'product_return' x.id %}"  class="btn">Tap to Return</a></td> 
+                                {% endif %}
+                                      {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- <nav aria-label="Page navigation example">
+    <ul class="pagination" style="margin-right: 619px;/* text-align: center; */">
+        {% if adminmens.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="adminmen?page={{adminmens.previous_page_number}}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        {% endif %}
+        {% for n in totalpagelist %}
+        <li class="page-item"><a class="page-link" href="adminmen?page={{n}}">{{n}}</a></li>
+        {% endfor %}
+        {% if adminmens.has_next %}
+
+        <li class="page-item">
+            <a class="page-link" href="adminmen?page={{adminmens.next_page_number}}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+        {% endif %}
+
+    </ul>
+</nav> -->
+{% endif %}
+{% endblock %}

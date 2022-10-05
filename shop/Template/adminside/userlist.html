@@ -1,0 +1,134 @@
+{% extends 'adminside/adminbase.html' %}
+
+{% block content %}
+
+<div class="content-header sty-one" style="margin-top: 64px;">
+  <h1 class="text-black" style="font-weight: 500;">User List</h1>
+  <ol class="breadcrumb">
+    <li><a href="adminhome">Home</a></li>
+    <li class="sub-bread"><i class="fa fa-angle-right"></i>User Management</li>
+    <li><i class="fa fa-angle-right"></i>Userlist</li>
+  </ol>
+</div>
+<div class="table-responsive">
+    <table class="table table-hover" style="margin-left: 82px;margin-top: 48px;max-width: 90%;">
+        <thead class="thead-dark" style="background-color:#252932;">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Username</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone_number</th>
+          <th scope="col">Active</th>
+        </tr>
+      </thead>
+      <tbody style="background-color: #D3D3D3">
+      {% for x in theuser %}
+          {% if x.is_superuser %}
+      {% else %}
+        <tr>
+          <th scope="row">{{forloop.counter}}</th>
+          <td>{{x.first_name}}</td>
+          <td>{{x.last_name}}</td>
+          <td>{{x.username}}</td>
+          <td>{{x.email}}</td>
+          <td>{{x.phone_number}}</td>
+          {% if x.is_active %}
+          <div>
+          <td><a onclick="delet({{x.id}})" class="btn btn-secondary btn-lg active" style="background-color:#252932; color: white;" role="button" aria-pressed="true">BlockUser</a></td>
+        {% else %}
+          <td><a onclick="block({{x.id}})" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">UnblockUser</a></td>
+        {% endif %}
+    </tr>
+    {% endif %}
+
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <!------------------------------------------------pagination------------------------->
+    <nav aria-label="Page navigation example">
+  
+      <ul class="pagination" style="margin-right: 619px;/* text-align: center; */">
+        {% if theuser.has_previous %} 
+        <li class="page-item">
+          <a class="page-link" href="user_list?page={{theuser.previous_page_number}}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        {% endif %}
+        {% for n in totalPagelist %}
+        <li class="page-item"><a class="page-link" href="user_list?page={{n}}">{{n}}</a></li>
+        {% endfor %}
+        {% if theuser.has_next %} 
+    
+        <li class="page-item">
+          <a class="page-link" href="user_list?page={{theuser.next_page_number}}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+        {% endif %}
+    
+      </ul>
+    </nav>
+  </div>
+
+  <!-- ---------------------------------sweet alert------------------------ -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  
+
+  <script>
+    function delet(id){
+  
+    swal({
+      title: "Are You Sure want to Block",
+      text: "",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        swal("COMPLETED", {
+          icon: "success",
+          
+          
+          
+        }).then(()=>{ window.location.href = "blockuser/"+id
+      })
+  
+        
+      } else {
+        swal("ENTRY DOESN'T DELETED");
+      }
+    });
+  }
+  </script>
+
+<script>
+  function block(id){
+
+  swal({
+    title: "Are You Sure want to UnBlock",
+    text: "",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      swal("COMPLETED", {
+        icon: "success",
+        
+        
+        
+      }).then(()=>{ window.location.href = "blockuser/"+id
+    })
+
+      
+    } 
+  });
+}
+</script>
+{% endblock %}

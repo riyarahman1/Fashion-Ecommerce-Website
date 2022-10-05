@@ -1,0 +1,198 @@
+        <!-- Page Banner Section Start -->
+        <div class="page-banner-section section bg-image" data-bg="{% static 'assets/images/bg/breadcrumb.jpg' %}">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+
+                        <div class="page-banner text-left">
+                            <h2>Checkout</h2>
+                            <ul class="page-breadcrumb">
+                               <a href="{% url 'index_page' %}"><li>Home/</li></a> 
+                                <li>Checkout</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Banner Section End -->
+        <!--Checkout section start-->
+        <div class="checkout-section section pt-90 pt-lg-70 pt-md-60 pt-sm-50 pt-xs-40  pb-70 pb-lg-50 pb-md-40 pb-sm-30 pb-xs-20">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+
+                        <!-- Checkout Form Start-->
+                        <form action="{% url 'invoice' %}" method="POST" class="checkout-form">
+                            {% csrf_token %}
+                            <div class="row row-40">
+
+                                <div class="col-lg-7">
+
+                                    <!-- Billing Address -->
+                                    <div id="billing-form" class="mb-10">
+                                        <h4 class="checkout-title">Billing Address</h4>
+                                    
+                                        <div class="row">
+                                            {% for x in details %}
+                                            
+                                            <div class="col-md-6 col-12 mb-20">
+                                                <div class="check-box">
+                                                    <!-- <input type="checkbox" id="create_account"> -->
+                                                    <input type="radio" name="address_id" value="{{x.id}}"  checked>
+                                           
+                                                <label>{{x.name}}</label>
+                                                <label>{{x.email}}</label>
+                                                <label>{{x.phone}}</label>
+                                                <label>{{x.address_details}}</label>
+                                                <label>{{x.town}}</label>
+                                                <label>{{x.state}}</label>
+                                                <label>{{x.country}}</label>
+                                            </div>
+                                        </div>
+                                            {% endfor %}
+                                            {% if messages %}
+                                                {% for message in messages %}
+                                                    {{message}}
+                                                {% endfor %}
+                                            {% endif %}
+                                            <div class="col-12 mb-20">
+                                                <div class="check-box">
+                                                    <input type="checkbox" id="create_account">
+                                               <!-- <label for="create_account">tap to add to different Address</label> -->
+                                                </div>
+
+                                                <div class="check-box">
+                                                    <input type="checkbox" id="shiping_address" data-shipping>
+                                                    <!-- <label for="shiping_address">add to Different Address</label> -->
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    
+                                    </div>
+                                    <a href="{% url 'add_address' %}" class="btn">  Add address </a> 
+
+                                    <!-- Shipping Address -->
+                                    <!-- <div id="shipping-form">
+                                        <h4 class="checkout-title">Shipping Address</h4>
+                                        <div class="row">
+                                             <form action="{% url 'add_address' %}" method="POST">
+                                                {% csrf_token %}
+                                            <div class="col-md-6 col-12 mb-20">
+                                                <label> Name</label>
+                                                <input type="text" placeholder="First Name" name="name">
+                                            </div>
+               
+                                            <div class="col-md-6 col-12 mb-20">
+                                                <label>Email Address*</label>
+                                                <input type="email" placeholder="Email Address" name="email">
+                                            </div>
+                                            <div class="col-md-6 col-12 mb-20">
+                                                <label>Phone no*</label>
+                                                <input type="text" placeholder="Phone number" name="phone_number">
+                                            </div>
+                                        
+                                            <div class="col-12 mb-20">
+                                                <label>Address*</label>
+                                                <input type="text" placeholder="Address line 1" name="user_address">
+                                            </div>
+                                            <div class="col-md-6 col-12 mb-20">
+                                                <label>Country*</label>
+                                                <select class="nice-select" name="country">
+                                                    <option>Bangladesh</option>
+                                                    <option>China</option>
+                                                    <option>country</option>
+                                                    <option>India</option>
+                                                    <option>Japan</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 col-12 mb-20">
+                                                <label>Town/City*</label>
+                                                <input type="text" placeholder="Town/City" name="town">
+                                            </div>
+                                            <div class="col-md-6 col-12 mb-20">
+                                                <label>State*</label>
+                                                <input type="text" placeholder="State" name="state">
+                                            </div>
+                                            <div class="col-md-6 col-12 mb-20">
+                                                <label>Zip Code*</label>
+                                                <input type="text" placeholder="Zip Code" name="zip_code">
+                                            </div>
+                                            <div class="login-submit">
+                                               <a href="{% url 'add_address' %}"><button type="submit" class="btn">add new</button></a> 
+                                            </div>
+                                            {% if messages %}
+                                                {% for message in messages %}
+                                                    {{message}}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </form>
+                                        </div>
+                                    </div> -->
+
+                                </div>
+
+                                <div class="col-lg-5">
+                                    <div class="row">
+
+                                        <!-- Cart Total -->
+                                        <div class="col-12 mb-60">
+
+                                            <h4 class="checkout-title">Cart Total</h4>
+
+                                            <div class="checkout-cart-total">
+
+                                                <h4>Product <span>Total</span></h4>
+                                                {% for x in carts_item %}
+                                                <ul>
+                                                     {% if x.product.product_offer.discount and x.product.cats.cats_offers.discount %}
+                                                                {% if x.product.product_offer.discount > x.product.cats.cats_offers.discount %}
+                                                                <li>{{x.product.name}} <span>  ₹{{x.product.product_offer.discount|mul:x.product.price|div:100|sub:x.product.price|mul:x.quantity|abs}}</span></li>
+                                                                {% else %}
+                                                                <li>{{x.product.name}} <span> ₹{{x.product.cats.cats_offers.discount|mul:x.product.price|div:100|sub:x.product.price|mul:x.quantity|abs}}</span></li>
+                                                                {%endif%}
+                                                     {% elif x.product.product_offer.discount %}      
+                                                             <li>{{x.product.name}} <span> ₹{{x.product.product_offer.discount|mul:x.product.price|div:100|sub:x.product.price|mul:x.quantity|abs}}</span></li>
+                                                     {% elif x.product.cats.cats_offers.discount %}
+                                                     <li>{{x.product.name}} <span> ₹{{x.product.cats.cats_offers.discount|mul:x.product.price|div:100|sub:x.product.price|mul:x.quantity|abs}}</span></li>
+                                                     {% else %}
+                                                     <li>{{x.product.name}} <span>₹{{x.product.price|mul:x.quantity|abs}}</span></li>
+                                                     {% endif %}
+
+
+
+
+
+                                                  
+                                                </ul>
+                                                {% endfor %}
+                                                <!-- <p><strong>Sub Total </strong> <span>{{x.sub_total}}g</span></p> -->
+                                                <p>Shipping Fee <span>Free shipping</span></p>
+                                                <p>Total <span>₹{{total}}</span></p>
+                                                <!-- <h4>Grand Total <span>₹{{total}}</span></h4> -->
+                                                {% if reduction > 0 %}
+                                                <p>Discount <span>{{reduction}}%</span></p>
+
+                                                <h4 style="color: white;">Grand Total <span>₹{{new_total}}</span></h4>
+                                                <p style="color:blue;">Coupon applied</p>
+                                                {% else %}
+                                                <h4 style="color: white;">Grand Total <span>₹{{total}}</span></h4>
+                                                {%endif%}
+                                            </div>
+                                            <button class="place-order btn btn-lg btn-round">Place order</button>
+                                        </div>
+
+                                        
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>

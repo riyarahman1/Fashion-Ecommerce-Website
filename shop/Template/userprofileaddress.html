@@ -1,0 +1,80 @@
+{% extends 'userbase.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="row">
+    <div class="col-md-8 mb-4">
+        <div class="card mb-4" style="margin-left: 180px;">
+            <div class="card-header py-3">
+                <h5 class="mb-0">Address</h5>
+            </div>
+            <div class="card-body">
+                <form action="/useraddress" method="POST">
+                    {% csrf_token %}
+                    <!-- 2 column grid layout with text inputs for the first and last names -->
+                    <div class="row mb-4">
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label" for="form7Example1">First name</label>
+                                <input type="text" name="firstname" placeholder="First Name" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label" for="form7Example2">Last name</label>
+                                <input type="text" name="lastname" placeholder="Last Name" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form7Example3">Email Address</label>
+                        <input type="email" name="Email_Address" placeholder="Email Address" class="form-control" />
+                    </div>
+
+                    <!-- Text input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form7Example4">Phone Number</label>
+                        <input type="number" name="phone_number" placeholder="Phone Number" class="form-control" />
+                    </div>
+
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form7Example5">Address</label>
+                        <input type="textarea" name="Address" placeholder="Address" class="form-control" />
+                    </div>
+
+                    <!-- Number input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form7Example6">Town</label>
+                        <input type="text" name="Town" placeholder="Town" class="form-control" />
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form7Example6">State</label>
+                        <input type="text" name="state" placeholder="State" class="form-control" />
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form7Example6">Pincode</label>
+                        <input type="number" name="pincode" placeholder="pincode" class="form-control" />
+                    </div>
+                    {% for q in message %}
+                    <p class="text-danger">{{q}}}</p>
+                    {% endfor %}
+                    <!-- Message input -->
+                    <div class="checkout__input">
+                        <button type="submit" class="site-btn">
+                            SUBMIT
+                        </button>
+                    </div>
+                    <!-- Checkbox -->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

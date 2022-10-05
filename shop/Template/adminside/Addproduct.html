@@ -1,0 +1,86 @@
+{% extends 'adminside/adminbase.html' %}
+
+{% block content %}
+    <!-- Content Header (Page header) -->
+    <div class="content-header sty-one">
+      <h1 class="text-black"></h1>
+      <ol class="breadcrumb">
+        <li><a href="adminhome">Home</a></li>
+        <li class="sub-bread"><i class="fa fa-angle-right"></i> Forms</li>
+        <li><i class="fa fa-angle-right"></i>New Product</li>
+      </ol>
+    </div>
+    
+    <!-- Main content -->
+    <div class="content">
+      <div  class="d-flex justify-content-center" >
+        <div class="col-lg-6">
+          <div class="card card-outline ">
+            <div class="card-header" style="background-color: #252932;">
+              <h5 class="text-white m-b-0">Add Products</h5>
+            </div>
+            <div class="card-body" style="background:#D3D3D3;color: black;">
+             <div class="message" style="color:red;">{% if messages %}
+              {% for k in messages %}
+              {{k}}
+              {% endfor %}
+              {% endif %}
+              </div>
+              <form action="{% url 'addproduct'%}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+              <div class="form-group">
+                <label for="">Name</label>
+                <input type="text" class="form-control" id="" placeholder="Name" name="name" >
+              </div>
+              <div class="form-group">
+                <label for="">Description</label>
+                <input type="text" class="form-control" id="" placeholder="Description" name="description" >
+              </div>
+              <div class="form-group">
+                <label for="">Price</label>
+                <input type="number" class="form-control" id="" placeholder="Price" name="price" >
+              </div>
+              <div class="form-group">
+                <label for="">Stock</label>
+                <input type="number" class="form-control" id="" placeholder="Stock" name="stock" >
+              </div>
+              <div class="form-group">
+                <label for="">Category</label>
+                <div class="form-group">
+                  <select class="form-control" name="category">
+                    {% for category in values %}
+                    <option value="{{category.id}}" >{{category.category_name}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="">Brand</label>
+                <div class="form-group">
+                  <select class="form-control" name="brand">
+                    {% for brands in brand %}
+                    <option value="{{brands.id}}" >{{brands.brandname}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="form-label">
+                <label for="customFile">Image</label>
+               <input type="file" class="form-control" id="customFile" name="image" accept="image/*" title="Only images are allowed"><br>
+                <input type="file" class="form-control" id="customFile" name="image1"accept="image/*" title="Only images are allowed"> <br>
+                <input type="file" class="form-control" id="customFile" name="image2" accept="image/*" title="Only images are allowed"><br>
+                <input type="file" class="form-control" id="customFile" name="image3" accept="image/*" title="Only images are allowed"><br>
+              </div>
+              <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    <!-- /.content --> 
+  </div>
+  <!-- /.content-wrapper -->
+  <script defer src="https://cdn.crop.guide/loader/l.js?c=TSBXNY"></script>
+  
+  {% endblock %}

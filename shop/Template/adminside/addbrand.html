@@ -1,0 +1,48 @@
+{% extends 'adminside/adminbase.html' %}
+
+{% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header sty-one">
+  <h1 class="text-black"></h1>
+  <ol class="breadcrumb">
+    <li><a href="adminhome">Home</a></li>
+    <li class="sub-bread"><i class="fa fa-angle-right"></i> Forms</li>
+    <li><i class="fa fa-angle-right"></i>New Brand</li>
+  </ol>
+</div>
+
+<!-- Main content -->
+<div class="content">
+  <div class="d-flex justify-content-center">
+    <div class="col-lg-6" style="margin-top: 80px;">
+      <div class="card card-outline ">
+        <div class="card-header" style="background-color:#252932; color:white;">
+          <h5 class="text-white m-b-0">Add Brand</h5>
+        </div>
+        <div class="card-body" style="background-color: #D3D3D3">
+          <form action="" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="">Name</label>
+              <input type="text" class="form-control" id="" placeholder="Name" name="brandname">
+            </div>
+            <div class="message" style="color:red;">{% if messages %}
+              {% for k in messages %}
+              {{k}}
+              {% endfor %}
+              {% endif %}
+              </div><br>
+        <button type="submit" class="btn" style="background-color:#252932; color: white;">Submit</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+{% endblock %}

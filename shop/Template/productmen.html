@@ -1,0 +1,43 @@
+{% extends 'adminbase.html' %}
+
+{% block content %}
+
+<td><a href="{% url 'addproduct'%}"><button type="submit" class="btn btn-warning">Add Product</button></a></td>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">name</th>
+          <th scope="col">description</th>
+          <th scope="col">price</th>
+          <th scope="col">stock</th>
+          <th scope="col">category</th>
+          <th scope="col">image</th>
+
+        </tr>
+      </thead>
+      <tbody>
+      {% for x in theproduct %}
+        <tr>
+          <th scope="row"> {{x.id}}</th>
+          <td>{{x.name}}</td>
+          <td>{{x.description}}</td>
+          <td>{{x.price}}</td>
+          <td>{{x.stock}}</td>
+          <td>{{x.category}}</td>
+
+          <td><img src="{{x.image}}" alt="" class="img-fluid img-thumbnail" style="width:140px; height:160px"></td>
+          <td><a href="editproduct/{{ x.id }}"><button type="submit" class="btn btn-warning">Edit</button></a></td>
+          <td><a href="delete/{{ x.id }}"><button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')" >Delete</button></a></td>
+          
+        </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+  </div>
+
+
+{% endblock %}
