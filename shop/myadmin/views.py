@@ -137,16 +137,16 @@ def addproduct(request):
         print(brand,'brand')
         if name=="":
                 messages.error(request,"Name is Empty")
-                return render(request,'adminside/addproduct.html',context)     
+                return render(request,'adminside/Addproduct.html',context)     
         elif description=="":
                 messages.error(request,"Description is Empty")
-                return render(request,'adminside/addproduct.html',context)  
+                return render(request,'adminside/Addproduct.html',context)  
         elif len(description)<5:
                 messages.error(request,"Description is too short")
-                return render(request,'adminside/addproduct.html',context)  
+                return render(request,'adminside/Addproduct.html',context)  
         elif brand=="":
                 messages.error(request,"brand is Empty")
-                return render(request,'adminside/addproduct.html',context)   
+                return render(request,'adminside/Addproduct.html',context)   
          
         x = Categoryies.objects.get(id=category)
         y = Brands.objects.get(id=brand)
@@ -157,7 +157,7 @@ def addproduct(request):
         return redirect(product)
         
    
-    return render(request,'adminside/addproduct.html',context)  
+    return render(request,'adminside/Addproduct.html',context)  
 
 # ---------------------------edit product -------------------------- #
 
