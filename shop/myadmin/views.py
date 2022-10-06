@@ -1,4 +1,6 @@
 from multiprocessing import context
+
+from requests import request
 from accounts.models import Account
 from category.models import Categoryies , Brands
 from django.contrib import messages
@@ -444,7 +446,7 @@ def product_change_status(request,id):
             orderproduct.save()
             return redirect(order_management)   
 # --------------------------- admin home -------------------------- #
-
+@cache_control(no_cache =True, must_revalidate =True, no_store =True)
 def admin_home(request):
         order = Payment.objects.filter(payment_method = 'COD')
         codtotal = 0
@@ -491,7 +493,10 @@ def admin_home(request):
         #     'cod':cod
         # }
     # print(paytotal)
-        return render(request, "adminside/admindashboard.html",context)
+        if 'username' in request.session:
+            return render(request, "adminside/admindashboard.html",context)
+        else:
+            return redirect(signinadmin)
 
 
 # ------------------------------ Coupon Offer ------------------------------ #
