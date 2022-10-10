@@ -29,7 +29,7 @@
                         <div class="shop__sidebar__search">
                             <form action="{% url 'womensearch' %}" method="POST">
                                 {% csrf_token %}
-                                <input type="text" placeholder="Search..." name="search" >
+                                <input type="text" placeholder="Search..." name="search">
                                 <button type="submit"><span class="icon_search"></span></button>
                             </form>
                         </div>

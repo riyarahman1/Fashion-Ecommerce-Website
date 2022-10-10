@@ -30,7 +30,7 @@
                     <div class="shop__sidebar__search">
                         <form action="{% url 'kidsearch' %}" method="POST">
                             {% csrf_token %}
-                            <input type="text" placeholder="Search..." name="search" value="search">
+                            <input type="text" placeholder="Search..." name="search">
                             <button type="submit"><span class="icon_search"></span></button>
                         </form>
                     </div>
@@ -99,8 +99,13 @@
                                 <div class=""><b><span><i style="font-size:15px"
                                                 class="fa fa-inr"></i>&nbsp;{{x.price}}</span></div></b>
                                 {% else %}
-                                <div class="price"><span><del class="text-danger"><i style="font-size:15px"
-                                                class="fa fa-inr"></i>{{x.price}}</del></span>&nbsp;&nbsp;<i
+                                <div class="price"><span>
+                                    {% ifnotequal x.price x.discount_price%}
+                                    <del class="text-danger"><i style="font-size:15px"
+                                                class="fa fa-inr"></i>{{x.price}}</del>
+                                                {% endifnotequal %}
+                                            </span>&nbsp;&nbsp;
+                                                <i
                                         style="font-size:15px" class="fa fa-inr"></i>{{x.discount_price}}</div>
                                 {% endif %}
                                 <a class="add-to-cart" href="{% url 'add_cart' x.id  %}">add to cart</a>

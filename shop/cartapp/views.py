@@ -257,7 +257,11 @@ def cartview(request,total = 0, quantity = 0, cart_items =None,tax = 0,grand_tot
             cart_items  = CartItem.objects.filter(user = request.user, is_active = True)
             print(cart_items, '267')
             for cart_item in cart_items:
-                if cart_item.product.discount_price != 0:
+                print(cart_item.product.product_name , '988name88')
+                print(cart_item.product.discount_price , '988discount_price88')
+                print(cart_item.product.price , '988price88')
+                
+                if cart_item.product.discount_price != 0 | cart_item.product.discount_price != None:
                         total+= int((cart_item.product.discount_price*cart_item.quantity))
                         quantity+=cart_item.quantity
                 else:

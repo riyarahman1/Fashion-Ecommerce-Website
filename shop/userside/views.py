@@ -171,7 +171,7 @@ def menproduct(request):
                 
 
         except:
-            m.discount_price = None 
+            m.discount_price = m.price
             m.save()
             try:
                 if Catoffer:
@@ -180,7 +180,7 @@ def menproduct(request):
                         print('ttttttttt',m.discount_price)
                         m.save()
             except:
-                m.discount_price = None
+                m.discount_price = m.price
                 m.save()
         try:
             if Pro and Catoffer:
@@ -201,7 +201,7 @@ def menproduct(request):
             print(Catoffer)
             if not Prod and Catoffer:
                 print("ccccccccccc")
-                m.discount_price = None
+                m.discount_price = m.price
                 m.save() 
         except:
             print("vvvvvvvvv")        
@@ -249,7 +249,7 @@ def womenproduct(request):
                 
 
         except:
-            w.discount_price = None 
+            w.discount_price = w.price
             w.save()
             try:
                 if Catoffer:
@@ -258,7 +258,7 @@ def womenproduct(request):
                         print('ttttttttt',w.discount_price)
                         w.save()
             except:
-                w.discount_price = None
+                w.discount_price = w.price
                 w.save()
         try:
             if Pro and Catoffer:
@@ -279,7 +279,7 @@ def womenproduct(request):
             print(Catoffer)
             if not Prod and Catoffer:
                 print("ccccccccccc")
-                w.discount_price = None
+                w.discount_price = w.price
                 w.save() 
         except:
             print("vvvvvvvvv")        
@@ -324,7 +324,7 @@ def kidsproduct(request):
                 
 
         except:
-            k.discount_price = None 
+            k.discount_price = k.price 
             k.save()
             try:
                 if Catoffer:
@@ -333,7 +333,7 @@ def kidsproduct(request):
                         print('ttttttttt',k.discount_price)
                         k.save()
             except:
-                k.discount_price = None
+                k.discount_price = k.price
                 k.save()
         try:
             if Pro and Catoffer:
@@ -344,7 +344,7 @@ def kidsproduct(request):
                     k.discount_price = int(k.price - (k.price*(co/100)))
                     k.save()
         except:
-            # if Pro and Catoffer==None:
+            # if Pro and Catoffer==0:
             #     w.discount_price = None
             #     w.save()
             print('iiiiiiiiiiiiiiiiiiii')
@@ -354,7 +354,7 @@ def kidsproduct(request):
             print(Catoffer)
             if not Prod and Catoffer:
                 print("ccccccccccc")
-                k.discount_price = None
+                k.discount_price = k.price
                 k.save() 
         except:
             print("vvvvvvvvv")        

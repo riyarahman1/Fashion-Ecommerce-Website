@@ -58,10 +58,10 @@
                                             <input id="quantity{{cart_item.product.id}}" type ="button" value="{{cart_item.quantity}}"> &nbsp;
                                         
                                             {% if not x.discount_price %}
-                                            <input type="hidden" id="price{{cart_item.product.id}}"  value="{{cart_item.product.discount_price}}">
+                                            <input type="hidden" id="price{{cart_item.product.id}}"  value="{{cart_item.product.price}}">
                                   
                                           {% else %}
-                                          <input type="hidden" id="price{{cart_item.product.id}}"  value="{{cart_item.product.price}}">
+                                          <input type="hidden" id="price{{cart_item.product.id}}"  value="{{cart_item.product.discount_price}}">
                                
                                      {% endif %}
                                            

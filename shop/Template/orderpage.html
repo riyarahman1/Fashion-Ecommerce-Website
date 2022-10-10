@@ -110,7 +110,7 @@
          "order_id": "{{payments.id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 2
          "handler": function (response){
            console.log("sucess"),
-           window.location.href = 'http://127.0.0.1:8000/orders/success/?razorpay_payment_id = ${response.razorpay_payment_id} = & razorpay_order_id= ${response.razorpay_order_id} & razorpay_signature = ${response.razorpay_signature}'
+           window.location.href = 'https://www.riyarimafashions.ml/orders/success/?razorpay_payment_id = ${response.razorpay_payment_id} = & razorpay_order_id= ${response.razorpay_order_id} & razorpay_signature = ${response.razorpay_signature}'
              // alert(response.razorpay_payment_id);
              // alert(response.razorpay_order_id);
              // alert(response.razorpay_signature)
