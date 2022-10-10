@@ -94,7 +94,7 @@
                                 </a>
                             </div>
                             <div class="product-content">
-                                <h3 class="title"><a href="singleproduct/{{x.id}}">{{x.product_name}}</a></h3>
+                                <h3 class="title"><a href="{% url 'singleproduct' x.id  %}">{{x.product_name}}</a></h3>
                                 {% if not x.discount_price %}
                                 <div class=""><b><span><i style="font-size:15px"
                                                 class="fa fa-inr"></i>&nbsp;{{x.price}}</span></div></b>

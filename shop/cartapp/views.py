@@ -122,11 +122,11 @@ def add_cartplus(request , id):
             
             cart_item = CartItem.objects.get(product = product ,user = request.user)
             cart_item.quantity += 1 
-            cart_item.cartprice += cart_item.product.discount_price() 
+            cart_item.cartprice += cart_item.product.discount_price
             cart_item.save()
 
         except CartItem.DoesNotExist:
-            cart_item = CartItem.objects.create(product = product,quantity = 1,user = request.user,cartprice=product.discount_price() )
+            cart_item = CartItem.objects.create(product = product,quantity = 1,user = request.user,cartprice=product.discount_price )
             cart_item.save()
 
         try:
@@ -260,10 +260,12 @@ def cartview(request,total = 0, quantity = 0, cart_items =None,tax = 0,grand_tot
                 print(cart_item.product.product_name , '988name88')
                 print(cart_item.product.discount_price , '988discount_price88')
                 print(cart_item.product.price , '988price88')
-                
-                if cart_item.product.discount_price != 0 | cart_item.product.discount_price != None:
-                        total+= int((cart_item.product.discount_price*cart_item.quantity))
-                        quantity+=cart_item.quantity
+
+                if (cart_item.product.discount_price != 0 ) or (cart_item.product.discount_price != None):
+                    print(f"price:{cart_item.product.discount_price}")
+
+                    total+= int((cart_item.product.discount_price*cart_item.quantity))
+                    quantity+=cart_item.quantity
                 else:
                         total+=(cart_item.product.price*cart_item.quantity)
                         quantity+=cart_item.quantity

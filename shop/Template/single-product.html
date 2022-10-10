@@ -89,8 +89,13 @@
                     <div class="col-lg-12">
                         <div class="product__details__text" style="margin-top: -631px;margin-left: 858px;">
                             <h4>{{value.product_name}}</h4>
+                            {% if discount_price %}
+                            <h3><i style="font-size:24px" class="fa fa-inr"></i>
+                                {{value.discount_price}}</h3>
+                            {% else %}    
                             <h3><i style="font-size:24px" class="fa fa-inr"></i>
                                 {{value.price}}</h3>
+                            {% endif %}
                             <h6>{{value.description}}</h6>
                             <!-- <h5>stock {{value.stock}}</h5> -->
                             <div class="product__details__option">
